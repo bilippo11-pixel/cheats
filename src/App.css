@@ -1,60 +1,252 @@
-/* Ogólne */
+/* ===== CZCIONKI ===== */
+/* Orbitron do nagłówków, Rajdhani do nowoczesnego tekstu */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* ===== GLOBALNE ===== */
 body {
-  background-color: #08080a;
+  background: radial-gradient(circle at 50% 0%, #150000 0%, #050505 50%, #000000 100%);
   color: white;
   margin: 0;
-  font-family: 'Inter', sans-serif;
+  font-family: 'Rajdhani', sans-serif;
+  min-height: 100vh;
 }
 
-/* Tytuły Gamingowe */
-.red-title {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 55px;
-  text-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
-  margin-bottom: 50px;
+.main-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.red-subtitle {
-  font-family: 'Orbitron', sans-serif;
-  color: #ff4444;
-  border-left: 4px solid #ff4444;
-  padding-left: 15px;
-  text-align: left;
-  margin: 40px 10%;
+/* ===== NAWIGACJA (Glassmorphism) ===== */
+.glass-nav {
+  max-width: 700px;
+  margin: 20px auto 50px;
+  padding: 12px 25px;
+  background: rgba(20, 20, 25, 0.4);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 0, 0, 0.15);
+  border-radius: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
-/* Rzeczywiste pobieranie */
-.red-btn {
-  display: block;
-  background: linear-gradient(90deg, #ff0000, #990000);
-  color: white;
-  text-decoration: none;
-  padding: 12px;
-  border-radius: 8px;
-  font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  font-size: 13px;
+.logo-box img {
+  width: 35px;
+  border-radius: 10px;
   transition: 0.3s;
-  border: none;
   cursor: pointer;
 }
 
-.red-btn:hover {
-  filter: brightness(1.2);
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
-  transform: scale(1.02);
+.logo-box img:hover {
+  box-shadow: 0 0 15px rgba(255, 0, 0, 0.6);
+  transform: scale(1.05);
 }
 
-/* Karty */
-.config-card.red-theme {
-  background: #121216;
-  border: 1px solid #222;
-  border-radius: 15px;
-  padding: 25px;
-  width: 250px;
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 40px;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul li {
+  color: #888;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+  letter-spacing: 1px;
+}
+
+nav ul li:hover, nav ul li.active {
+  color: #ff3333;
+  text-shadow: 0 0 10px rgba(255, 51, 51, 0.5);
+}
+
+/* ===== HEADER CONFIGÓW & WYSZUKIWARKA ===== */
+.configs-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.red-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 60px;
+  font-weight: 900;
+  margin: 0;
+  background: linear-gradient(to right, #ff0000, #ff4d4d, #cc0000);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 5px 25px rgba(255, 0, 0, 0.3);
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  color: #9a9aa5;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.search-box {
+  margin-top: 30px;
+}
+
+.search-box input {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px 25px;
+  background: rgba(15, 15, 15, 0.8);
+  border: 1px solid #330000;
+  border-radius: 30px;
+  color: white;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 16px;
+  outline: none;
   transition: 0.3s;
 }
 
-.config-card.red-theme:hover {
-  border-color: #ff4444;
+.search-box input:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.2);
+}
+
+/* ===== GRID KART ===== */
+.config-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  padding: 0 20px;
+}
+
+/* ===== KARTY CONFIGÓW (Zmieniony wygląd) ===== */
+.config-card {
+  background: linear-gradient(145deg, rgba(20,20,22,0.9), rgba(10,10,12,0.9));
+  border: 1px solid rgba(255, 50, 50, 0.1);
+  border-radius: 16px;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Płynna animacja bouncingu */
+}
+
+/* Czerwony pasek podświetlający na górze karty */
+.config-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #ff0000, transparent);
+  opacity: 0;
+  transition: 0.4s;
+}
+
+.premium-hover:hover {
+  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(255, 0, 0, 0.5);
+  box-shadow: 0 15px 35px rgba(255, 0, 0, 0.15);
+}
+
+.premium-hover:hover::before {
+  opacity: 1;
+}
+
+/* Tagi gier */
+.game-badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.game-badge.cs2 { background: rgba(255, 165, 0, 0.1); color: #ffa500; border: 1px solid #ffa500; }
+.game-badge.minecraft { background: rgba(50, 205, 50, 0.1); color: #32cd32; border: 1px solid #32cd32; }
+
+/* Tekst na karcie */
+.config-card h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 22px;
+  margin: 0 0 10px 0;
+  color: #fff;
+}
+
+.config-card p {
+  color: #aaa;
+  font-size: 16px;
+  line-height: 1.5;
+  margin-bottom: 25px;
+}
+
+/* ===== PRZYCISK POBIERZ (Animowany) ===== */
+.red-btn {
+  display: block;
+  text-align: center;
+  padding: 14px;
+  background: #1a0000;
+  border: 1px solid #ff0000;
+  color: #ff0000;
+  text-decoration: none;
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 8px;
+  letter-spacing: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s;
+  z-index: 1;
+}
+
+/* Efekt najechania na przycisk (wypełnianie kolorem) */
+.red-btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #ff0000, #cc0000);
+  transition: all 0.4s ease;
+  z-index: -1;
+}
+
+.red-btn:hover {
+  color: #ffffff;
+  border-color: #ff3333;
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+}
+
+.red-btn:hover::after {
+  width: 100%;
+}
+
+/* Brak wyników w wyszukiwarce */
+.no-results {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #ff4444;
+  font-size: 20px;
+  margin-top: 40px;
+}
+
+/* Animacja wejścia na stronę */
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
