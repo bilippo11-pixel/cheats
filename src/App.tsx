@@ -5,70 +5,63 @@ function App() {
   const [page, setPage] = useState('configs');
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Twoja baza plików (zaraz powiesz mi, jakie nowe dodać)
   const configsDB = [
-    { id: 1, name: 'Enigma HVH', game: 'CS2', desc: 'Najbardziej agresywne ustawienia pod rage / HvH. Gwarantowana dominacja.', file: '/enigma.cfg' },
-    { id: 2, name: 'Grim Client', game: 'Minecraft', desc: 'Zoptymalizowany pod bypassy antycheatów. Idealny pod legit/semi-rage.', file: '/grim.zip' },
-    { id: 3, name: 'Thunderhack', game: 'Minecraft', desc: 'Agresywny config pod serwery Anarchy (2b2t) i szybkie PvP.', file: '/thunderhack.zip' },
-    { id: 4, name: 'Celestial', game: 'Minecraft', desc: 'Świetne wizualizacje i płynność na słabszych komputerach.', file: '/celestial.zip' },
-    { id: 5, name: 'Catlean', game: 'Minecraft', desc: 'Zestaw skryptów idealnie skrojony pod popularne mini-games.', file: '/catlean.zip' },
-    { id: 6, name: 'Velgarosa', game: 'Minecraft', desc: 'Eksperymentalne moduły dla zaawansowanych graczy.', file: '/velgarosa.zip' },
+    { id: 1, name: 'Enigma HVH', game: 'CS2', desc: 'Agresywny rage config.', file: 'enigma.cfg' },
+    { id: 2, name: 'Grim Client', game: 'Minecraft', desc: 'Legit/Semi-rage settings.', file: 'grim.zip' },
+    { id: 3, name: 'Thunderhack', game: 'Minecraft', desc: 'Anarchy server specialist.', file: 'thunderhack.zip' },
+    { id: 4, name: 'Celestial', game: 'Minecraft', desc: 'Visuals & Performance.', file: 'celestial.zip' },
+    { id: 5, name: 'Catlean', game: 'Minecraft', desc: 'Mini-games optimized.', file: 'catlean.zip' },
+    { id: 6, name: 'Velgarosa', game: 'Minecraft', desc: 'Experimental modules.', file: 'velgarosa.zip' },
   ];
 
   const filteredConfigs = configsDB.filter(cfg => 
-    cfg.name.toLowerCase().includes(searchTerm.toLowerCase()) || 
-    cfg.game.toLowerCase().includes(searchTerm.toLowerCase())
+    cfg.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div className="app-container">
-      {/* Navbar z efektem szkła */}
-      <nav className="main-nav">
-        <div className="nav-inner">
-          <div className="nav-logo" onClick={() => setPage('home')}>PROJECT<span>X</span></div>
-          <ul className="nav-menu">
-            <li onClick={() => setPage('home')} className={page === 'home' ? 'active' : ''}>Główna</li>
-            <li onClick={() => setPage('configs')} className={page === 'configs' ? 'active' : ''}>Configs</li>
-            <li>Kontakt</li>
-          </ul>
+      {/* GŁÓWNY PANEL STEROWANIA */}
+      <header className="top-bar">
+        <div className="search-hub">
+          <div className="bishop-logo">♝</div>
+          
+          <div className="search-input-wrapper">
+            <input 
+              type="text" 
+              placeholder="SZUKAJ KONFIGURACJI..." 
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
+
+          <nav className="side-nav">
+            <span onClick={() => setPage('home')} className={page === 'home' ? 'active' : ''}>HOME</span>
+            <span onClick={() => setPage('configs')} className={page === 'configs' ? 'active' : ''}>CONFIGS</span>
+            <span>KONTAKT</span>
+          </nav>
         </div>
-      </nav>
+      </header>
 
       <main className="content">
         {page === 'home' ? (
-          <div className="hero-section animate-fade">
-            <h1 className="hero-title">ELITARNE <span>USTAWIENIA</span></h1>
-            <p>Wybierz zakładkę Configs, aby zyskać przewagę.</p>
+          <div className="hero">
+            <h1>PROJECT BISHOP</h1>
+            <p>Wybierz zakładkę Configs powyżej.</p>
           </div>
         ) : (
-          <div className="configs-wrapper animate-fade">
-            <div className="header-flex">
-              <h1 className="section-title">BAZA CONFIGÓW</h1>
-              <div className="search-container">
-                <input 
-                  type="text" 
-                  placeholder="Szukaj configu..." 
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                />
-                <div className="search-line"></div>
-              </div>
-            </div>
-
+          <div className="grid-container">
             <div className="config-grid">
               {filteredConfigs.map((cfg) => (
-                <div key={cfg.id} className="modern-card">
-                  <div className="card-glare"></div>
-                  <div className="card-header">
-                    <span className={`game-tag ${cfg.game.toLowerCase()}`}>{cfg.game}</span>
-                  </div>
-                  <div className="card-body">
+                <div key={cfg.id} className="config-card">
+                  <div className="card-accent"></div>
+                  <div className="card-info">
+                    <span className="game-label">{cfg.game}</span>
                     <h3>{cfg.name}</h3>
                     <p>{cfg.desc}</p>
                   </div>
-                  <div className="card-footer">
-                    <a href={cfg.file} download className="btn-download">
-                      <span>POBIERZ</span>
-                    </a>
-                  </div>
+                  <a href={`/files/${cfg.file}`} download className="download-btn">
+                    POBIERZ
+                  </a>
                 </div>
               ))}
             </div>
