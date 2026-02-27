@@ -1,61 +1,256 @@
-/* STYLE DLA STRONY CONFIGS */
+/* ===== IMPORT FONTS ===== */
+/* Orbitron to świetna, gamingowa czcionka, a Roboto będzie czytelna w tekście */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;800&family=Roboto:wght@400;500;700&display=swap');
+
+/* ===== GLOBALNE USTAWIENIA ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0b0b14; /* Ten sam ciemny kolor co na pierwszej stronie */
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden; /* Na wszelki wypadek, gdyby coś wystawało */
+}
+
+/* ===== GŁÓWNY KONTENER ===== */
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* ===== PASEK NAWIGACJI (NAVBAR) ===== */
+nav {
+    max-width: 800px;
+    margin: 30px auto 60px auto; /* Odsuń go bardziej od góry i od spodu */
+    padding: 10px 30px;
+    background: rgba(255, 255, 255, 0.03); /* Ciemny, przezroczysty */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Delikatne obramowanie */
+    border-radius: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    backdrop-filter: blur(10px); /* Efekt rozmycia za paskiem */
+    box-shadow: 0 0 20px rgba(124, 92, 255, 0.2); /* Delikatny fioletowy blask */
+}
+
+/* Logo box - ten fioletowy kwadracik z pierwszego designu */
+.logo-box {
+    width: 35px;
+    height: 35px;
+    background: #7c5cff;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.logo-box:hover {
+    box-shadow: 0 0 15px #8b6dff;
+    transform: scale(1.05);
+}
+
+.logo-box img {
+    width: 20px;
+}
+
+/* Lista w menu */
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Elementy listy */
+nav ul li {
+    color: #9a9aa5; /* Ten sam szary */
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.3s ease-all;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+/* Po najechaniu napis robi się biały */
+nav ul li:hover {
+    color: white;
+}
+
+/* Dodaj fioletową linię pod spodem po najechaniu */
+nav ul li::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #7c5cff;
+    transform: scaleX(0); /* Początkowo niewidoczna */
+    transition: 0.3s ease-all;
+}
+
+nav ul li:hover::after {
+    transform: scaleX(1); /* Rozszerza się */
+}
+
+/* ===== STRONA CONFIGS (Nowe style) ===== */
+
+/* Główny tytuł CONFIGS - Neonowy Fiolet */
 .red-title {
-  color: white;
-  font-size: 60px;
-  text-shadow: 0 0 20px #ff0000;
-  text-align: center;
-  margin: 40px 0;
-  font-family: 'Orbitron', sans-serif;
+    color: white;
+    font-size: 72px; /* Duży, agresywny rozmiar */
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    margin: 80px 0;
+    letter-spacing: 5px;
+    /* Czerwony blask (zostawiamy go, bo wygląda bardzo gamingowo) */
+    text-shadow: 0 0 15px rgba(255, 0, 0, 0.7); 
+    position: relative;
 }
 
+/* Czerwona linia pod głównym tytułem */
+.red-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 150px;
+    height: 4px;
+    background-color: #ff0000;
+    border-radius: 2px;
+    box-shadow: 0 0 10px #ff0000;
+}
+
+/* Sekcje (CS2 / Minecraft) */
+.section {
+    width: 100%;
+    margin-bottom: 60px;
+}
+
+/* Czerwone napisy sekcji (CS2/Minecraft) z technicznym wyglądem */
 .red-subtitle {
-  color: #ff0000;
-  border-left: 4px solid #ff0000;
-  padding-left: 15px;
-  margin: 40px 0 20px 0;
-  text-align: left;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 36px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #ff0000; /* Czerwony kolor sekcji */
+    margin-bottom: 30px;
+    padding-left: 20px;
+    border-left: 6px solid #ff0000; /* Czerwona linia z boku */
+    text-shadow: 0 0 8px rgba(255, 0, 0, 0.5);
 }
 
+/* SIATKA KART (GRID) */
 .config-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
-  justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Automatyczne rzędy */
+    gap: 30px;
+    width: 100%;
 }
 
+/* STYL KARTY CONFIGU - Mroczny i Techniczny */
 .config-card.red-theme {
-  background: #0d0d0d;
-  border: 1px solid #330000;
-  padding: 30px;
-  width: 280px;
-  border-radius: 15px;
-  transition: 0.3s;
+    background: linear-gradient(145deg, #12121e, #0d0d16); /* Bardzo mroczny fiolet */
+    border: 1px solid rgba(124, 92, 255, 0.1); /* Delikatne fioletowe obramowanie */
+    border-radius: 16px;
+    padding: 35px;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
 }
 
+/* Efekt hover dla karty - Fioletowy blask */
 .config-card.red-theme:hover {
-  border-color: #ff0000;
-  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
-  transform: translateY(-5px);
+    transform: translateY(-8px);
+    border-color: #7c5cff; /* Zmień kolor obramowania na fioletowy */
+    box-shadow: 0 10px 40px rgba(124, 92, 255, 0.3);
 }
 
+/* Czerwony pasek na górze karty, pojawiający się po najechaniu */
+.config-card.red-theme::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: #ff0000;
+    transform: scaleX(0); /* Początkowo niewidoczny */
+    transition: transform 0.3s ease;
+    box-shadow: 0 0 15px #ff0000;
+}
+
+.config-card.red-theme:hover::before {
+    transform: scaleX(1); /* Rozszerza się na całą szerokość */
+}
+
+/* Tytuły configów (Enigma, Grim etc.) */
 .config-card h3 {
-  color: white;
-  margin-bottom: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: #ffffff;
+    text-transform: uppercase;
 }
 
+/* Opisy configów (Ustawienia pod rage...) */
+.config-card p {
+    font-size: 14px;
+    color: #9a9aa5; /* Szary jak na pierwszej stronie */
+    margin-bottom: 25px;
+}
+
+/* PRZYCISK POBIERANIA (Zastępujemy link) */
 .red-btn {
-  display: block;
-  margin-top: 20px;
-  background: #ff0000;
-  color: white;
-  text-decoration: none;
-  padding: 10px;
-  border-radius: 8px;
-  font-weight: bold;
-  transition: 0.3s;
+    display: block;
+    background-color: transparent;
+    border: 2px solid #ff0000; /* Czerwony obrys */
+    color: #ff0000;
+    padding: 12px 20px;
+    border-radius: 8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    text-align: center;
 }
 
 .red-btn:hover {
-  background: #cc0000;
-  box-shadow: 0 0 15px #ff0000;
+    background-color: #ff0000; /* Zapełnij czerwonym po najechaniu */
+    color: #ffffff;
+    box-shadow: 0 0 20px rgba(255, 0, 0, 0.6);
+}
+
+/* ===== STOPKA ===== */
+footer {
+    margin-top: auto;
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+    color: #44444c;
+    font-size: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
