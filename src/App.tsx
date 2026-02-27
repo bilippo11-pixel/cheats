@@ -2,16 +2,16 @@ import { useState } from 'react'
 import './App.css'
 
 function App() {
-  const [page, setPage] = useState('home'); // 'home' to cennik, 'configs' to nowa strona
+  const [page, setPage] = useState('home');
 
   return (
     <div className="main-container">
       <nav>
-        <div className="logo-box" onClick={() => setPage('home')} style={{cursor: 'pointer'}}>
+        <div className="logo-box" onClick={() => setPage('home')}>
           <img src="/favicon.png" alt="logo" />
         </div>
         <ul>
-          <li onClick={() => setPage('home')}>Strona Główna</li>
+          <li onClick={() => setPage('home')}>Główna</li>
           <li onClick={() => setPage('home')}>Cennik</li>
           <li onClick={() => setPage('configs')}>Configs</li>
           <li>Kontakt</li>
@@ -21,36 +21,65 @@ function App() {
       {page === 'home' ? (
         <>
           <div className="hero">
-            <h1>Przeglądaj produkty!</h1>
-            <p>Wybierz pakiet Nolag idealny dla siebie.</p>
+            <h1>Sprawdź ofertę!</h1>
+            <p>Wybierz pakiet idealnie dopasowany do Twoich potrzeb.</p>
           </div>
           <div className="cards-container">
-            {/* Tutaj zostają Twoje 3 karty cennika (Normal, Pro, Extra) */}
+            <div className="card">
+              <h2>Pakiet Basic</h2>
+              <div className="price">20 zł</div>
+              <ul className="features">
+                <li>Pełny dostęp</li>
+                <li>Aktualizacje</li>
+                <li>Wsparcie 24/7</li>
+              </ul>
+              <button className="buy-btn">Wybierz</button>
+            </div>
+            <div className="card">
+              <h2>Pakiet Pro</h2>
+              <div className="price">50 zł</div>
+              <ul className="features">
+                <li>Wszystko z Basic</li>
+                <li>Priorytetowy dostęp</li>
+                <li>Szybsze serwery</li>
+              </ul>
+              <button className="buy-btn">Wybierz</button>
+            </div>
+            <div className="card">
+              <h2>Pakiet Ultimate</h2>
+              <div className="price">100 zł</div>
+              <ul className="features">
+                <li>Wszystko z Pro</li>
+                <li>Dostęp Beta</li>
+                <li>Unikalne funkcje</li>
+              </ul>
+              <button className="buy-btn">Wybierz</button>
+            </div>
           </div>
         </>
       ) : (
         <div className="configs-page">
-          <h1 className="red-title">CONFIGS</h1>
+          <h1 className="red-title">SETTINGS & CONFIGS</h1>
           
           <div className="section">
-            <h2 className="red-subtitle">CONFIGS CS2</h2>
+            <h2 className="red-subtitle">CS2 SETTINGS</h2>
             <div className="config-grid">
               <div className="config-card red-theme">
-                <h3>Enigma HVH Config</h3>
-                <p>Ustawienia pod rage / HvH.</p>
-                <a href="#" className="red-btn">Pobierz</a>
+                <h3>Enigma HVH</h3>
+                <p>Ustawienia pod najwyższą precyzję.</p>
+                <a href="/enigma.cfg" download className="red-btn">Pobierz</a>
               </div>
             </div>
           </div>
 
           <div className="section">
-            <h2 className="red-subtitle">MINECRAFT CONFIGS</h2>
+            <h2 className="red-subtitle">MINECRAFT SETTINGS</h2>
             <div className="config-grid">
-              {['Grim Client', 'Thunderhack', 'Celestial', 'Catlean', 'Velgarosa'].map((name) => (
+              {['Grim', 'Thunderhack', 'Celestial', 'Catlean', 'Velgarosa'].map((name) => (
                 <div key={name} className="config-card red-theme">
                   <h3>{name}</h3>
-                  <p>Najlepszy config pod {name}.</p>
-                  <a href="#" className="red-btn">Pobierz</a>
+                  <p>Zoptymalizowany pod {name}.</p>
+                  <a href={`/${name.toLowerCase()}.zip`} download className="red-btn">Pobierz</a>
                 </div>
               ))}
             </div>
