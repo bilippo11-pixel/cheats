@@ -1,178 +1,199 @@
-@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600;900&family=Rajdhani:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@500;600;700&display=swap');
 
 :root {
-  --primary: #ff0000;
-  --bg: #050505;
-  --card-bg: #111114;
-  --text: #ffffff;
-  --text-dim: #888;
+  --primary: #ff1111;
+  --primary-glow: rgba(255, 17, 17, 0.4);
+  --bg-dark: #050506;
+  --card-bg: rgba(20, 20, 25, 0.7);
 }
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background-color: var(--bg);
-  color: var(--text);
+  background: radial-gradient(circle at 50% -20%, #200000 0%, var(--bg-dark) 45%);
+  background-attachment: fixed;
+  color: #ffffff;
   font-family: 'Rajdhani', sans-serif;
-  overflow-x: hidden;
+  min-height: 100vh;
 }
 
 /* NAVBAR */
-.navbar {
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 20px 0;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.main-nav {
+  padding: 25px 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
 }
 
-.nav-container {
-  max-width: 1200px;
+.nav-inner {
+  max-width: 1300px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
+  align-items: center;
+  padding: 0 40px;
 }
 
-.nav-links {
+.nav-logo {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 24px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+
+.nav-logo span { color: var(--primary); }
+
+.nav-menu {
   display: flex;
-  gap: 30px;
+  gap: 40px;
   list-style: none;
 }
 
-.nav-links li {
+.nav-menu li {
   font-family: 'Orbitron', sans-serif;
-  font-size: 14px;
+  font-size: 13px;
+  text-transform: uppercase;
+  color: #888;
   cursor: pointer;
   transition: 0.3s;
-  color: var(--text-dim);
+  letter-spacing: 1px;
 }
 
-.nav-links li:hover, .nav-links li.active {
-  color: var(--primary);
-  text-shadow: 0 0 10px var(--primary);
+.nav-menu li:hover, .nav-menu li.active {
+  color: #fff;
+  text-shadow: 0 0 10px var(--primary-glow);
 }
 
-/* LAYOUT */
-.main-content {
-  max-width: 1200px;
-  margin: 40px auto;
-  padding: 0 20px;
+/* LAYOUT & SEARCH */
+.content { max-width: 1300px; margin: 50px auto; padding: 0 40px; }
+
+.header-flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 50px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  padding-bottom: 20px;
 }
 
-.page-header {
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-.title-gradient {
+.section-title {
   font-family: 'Orbitron', sans-serif;
-  font-size: clamp(30px, 8vw, 60px);
-  background: linear-gradient(to bottom, #fff, #ff0000);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin-bottom: 20px;
+  font-size: 42px;
+  letter-spacing: -1px;
 }
 
-/* SEARCH */
-.search-wrapper input {
+.search-container { position: relative; width: 300px; }
+
+.search-container input {
   width: 100%;
-  max-width: 400px;
-  padding: 12px 20px;
-  background: #111;
-  border: 1px solid #333;
-  border-radius: 5px;
-  color: white;
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #222;
+  padding: 10px 0;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 18px;
   outline: none;
   transition: 0.3s;
 }
 
-.search-wrapper input:focus {
-  border-color: var(--primary);
-  box-shadow: 0 0 15px rgba(255, 0, 0, 0.2);
-}
+.search-container input:focus { border-color: var(--primary); }
 
-/* GRID - To naprawia wygląd pionowy! */
+/* MODERN GRID & CARDS */
 .config-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 30px;
 }
 
-/* KARTA */
-.config-card {
+.modern-card {
   background: var(--card-bg);
-  border: 1px solid #222;
-  border-radius: 12px;
-  padding: 25px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  padding: 30px;
   position: relative;
-  transition: 0.3s ease-in-out;
+  overflow: hidden;
+  transition: 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   display: flex;
   flex-direction: column;
 }
 
-.config-card:hover {
-  transform: translateY(-5px);
+.modern-card:hover {
+  transform: translateY(-10px);
   border-color: var(--primary);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.6), 0 0 20px rgba(255,0,0,0.1);
 }
 
-.badge {
-  background: rgba(255, 0, 0, 0.1);
-  color: var(--primary);
-  padding: 4px 10px;
-  font-size: 12px;
+/* Tag gier */
+.game-tag {
+  font-size: 11px;
   font-weight: 700;
+  padding: 3px 10px;
   border-radius: 4px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
   display: inline-block;
-  margin-bottom: 15px;
-  width: fit-content;
 }
 
-.config-card h3 {
+.game-tag.cs2 { background: #ff990022; color: #ff9900; border: 1px solid #ff990044; }
+.game-tag.minecraft { background: #00ff6622; color: #00ff66; border: 1px solid #00ff6644; }
+
+.modern-card h3 {
   font-family: 'Orbitron', sans-serif;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  font-size: 20px;
 }
 
-.config-card p {
-  color: var(--text-dim);
+.modern-card p {
+  color: #aaa;
   font-size: 15px;
-  margin-bottom: 25px;
+  line-height: 1.5;
+  margin-bottom: 30px;
   flex-grow: 1;
 }
 
-/* PRZYCISK */
-.download-button {
+/* BUTTON POBIERZ */
+.btn-download {
   display: block;
   text-align: center;
-  background: var(--primary);
-  color: white;
-  text-decoration: none;
+  background: transparent;
+  border: 1px solid var(--primary);
+  color: var(--primary);
   padding: 12px;
-  border-radius: 6px;
-  font-weight: 700;
+  text-decoration: none;
   font-family: 'Orbitron', sans-serif;
-  font-size: 13px;
-  transition: 0.3s;
+  font-size: 12px;
+  font-weight: 700;
+  border-radius: 5px;
+  position: relative;
+  z-index: 1;
+  transition: 0.4s;
+  overflow: hidden;
 }
 
-.download-button:hover {
-  background: #cc0000;
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4);
+.btn-download::before {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 100%; height: 100%;
+  background: var(--primary);
+  transition: 0.4s;
+  z-index: -1;
 }
 
-/* ANIMACJA */
-.animate-in {
-  animation: fadeIn 0.5s ease forwards;
+.btn-download:hover::before { left: 0; }
+
+.btn-download:hover {
+  color: #fff;
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+/* ANIMACJE */
+.animate-fade {
+  animation: fadeIn 0.8s ease-out forwards;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
