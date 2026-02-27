@@ -1,42 +1,61 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+/* STYLE DLA STRONY CONFIGS */
+.red-title {
+  color: white;
+  font-size: 60px;
+  text-shadow: 0 0 20px #ff0000;
   text-align: center;
+  margin: 40px 0;
+  font-family: 'Orbitron', sans-serif;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.red-subtitle {
+  color: #ff0000;
+  border-left: 4px solid #ff0000;
+  padding-left: 15px;
+  margin: 40px 0 20px 0;
+  text-align: left;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.config-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.config-card.red-theme {
+  background: #0d0d0d;
+  border: 1px solid #330000;
+  padding: 30px;
+  width: 280px;
+  border-radius: 15px;
+  transition: 0.3s;
 }
 
-.card {
-  padding: 2em;
+.config-card.red-theme:hover {
+  border-color: #ff0000;
+  box-shadow: 0 0 25px rgba(255, 0, 0, 0.3);
+  transform: translateY(-5px);
 }
 
-.read-the-docs {
-  color: #888;
+.config-card h3 {
+  color: white;
+  margin-bottom: 10px;
+}
+
+.red-btn {
+  display: block;
+  margin-top: 20px;
+  background: #ff0000;
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.red-btn:hover {
+  background: #cc0000;
+  box-shadow: 0 0 15px #ff0000;
 }
